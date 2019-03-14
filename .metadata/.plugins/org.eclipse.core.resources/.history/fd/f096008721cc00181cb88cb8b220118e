@@ -1,0 +1,72 @@
+package zachary.shapes;
+import processing.core.PApplet;
+
+/**
+ * This class represents a double precision circle, that draws a circle and can calculate basic 
+ * properties of the circle, such as circumference and perimeter
+ * 
+ * @author Zachary Wang
+ * @version 9/27/2018
+ */
+
+public class Circle{
+
+	private double x, y; //center
+	private double radius; 
+	
+	/**
+	 *  Creates a default instance of a Circle object with all dimensions
+	 *  set to zero.
+	*/
+	public Circle() {
+		
+	}
+	
+	/**
+	 * Creates a new instance of a Circle object with the center at x, y
+	 * @param x x coordinate of the center
+	 * @param y y coordinate of the center
+	 * @param radius radius of the circle
+	 */
+	public Circle(double x, double y, double radius) {
+		this.x = x;
+		this.y = y;
+		this.radius = radius;
+	}
+	
+	/**
+	 *  Calculates and returns the circumference of the circle
+	 * @return the circumference of the circle
+	 */
+	public double getCircumference() {
+		return 2*Math.PI*radius;
+	}
+	
+	/**
+	 *  Calculates and returns the area of the circle
+	 * @return the area of the circle
+	 */
+	public double getArea() {
+		return Math.PI*Math.pow(radius, 2);
+	}
+
+	/**
+	 *  Determines whether the point x,y is contained inside this circle
+	 * @param x x coordinate of the point
+	 * @param y y coordinate of the point
+	 * @return true if the point x,y is contained inside, or on the border, of this circle
+	 */
+	public boolean isPointInside(double x, double y) {
+		return Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2) < Math.pow(radius, 2) || Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2) == Math.pow(radius, 2);
+	}
+	
+	/**
+	 *  Draws a new instance of a Circle object the center at x, y
+	 * @param marker the reference of the PApplet used to draw the circle
+	 * @pre marker must not be null, and appropriate settings should have been selected (color, fill, etc)
+	 * @post the marker will have its ellipse mode set to center
+	 */
+	public void draw(PApplet marker) {
+		marker.ellipse((float)x, (float)y, (float)(radius*2), (float)(radius*2));
+	}
+}

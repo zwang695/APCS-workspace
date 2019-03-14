@@ -1,0 +1,39 @@
+import cchen.shapes.Shape;
+import processing.core.PApplet;
+
+public class PhysicsShape {
+
+	private Shape s;
+	
+	private double vx, vy;
+	
+	private double gravity;
+	
+	public PhysicsShape(Shape s) {
+		this.s = s;
+		gravity = 0.1;
+	}
+	
+	public void draw(PApplet p) {
+		s.setStroke(255, 0, 0);
+		s.draw(p);
+		act();
+	}
+	
+	public void act() {
+		if(s.getY() + vy >= 400) {
+			vy *= -.5;
+			return;
+		}
+		
+		s.move(s.getX() + vx, s.getY() + vy);
+		
+		vy += gravity;
+	}
+	
+	public void moveTo(double x, double y) {
+		vy = 0;
+		s.move(x, y);
+	}
+	
+}

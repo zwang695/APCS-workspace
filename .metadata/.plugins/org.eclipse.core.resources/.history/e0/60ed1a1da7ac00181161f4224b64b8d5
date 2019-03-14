@@ -1,0 +1,21 @@
+import processing.core.PApplet;
+
+public class Person {
+
+	private int x;
+	
+	public Person() {
+		
+	}
+	
+	public void draw(PApplet p) {
+		p.translate(x, 0);
+		
+		p.ellipse(100f, 150f, 50f, 50f);
+	}
+	
+	public void move(int step) {
+		x += step;
+	}
+	
+}

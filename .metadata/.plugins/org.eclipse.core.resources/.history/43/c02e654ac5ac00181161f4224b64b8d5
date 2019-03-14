@@ -1,0 +1,76 @@
+import processing.core.PApplet;
+
+public class Person {
+
+	private int x;
+	
+	private int wave_Angle;
+	private int current_Angle;
+	private int angle_Change;
+	
+	private int tanCount;
+	
+	public Person() {
+		wave_Angle = 60;
+		current_Angle = 0;
+		angle_Change = 1;
+		tanCount = 218;
+	}
+	
+	public void draw(PApplet p) {
+		p.pushMatrix();
+		
+		p.translate(x, 0);
+		//head
+		p.fill(255, 218, 185);
+		p.stroke(255, 218, 185);
+		p.ellipse(75f, 125f, 50f, 50f);
+		//body
+		p.strokeWeight(3);
+		p.line(75, 150, 75, 175);
+		//arms
+		p.stroke(255, tanCount, 185);
+		if(DrawingSurface.isWaving) drawWaving(p);
+		else drawRight(p);
+		p.stroke(255, 218, 185);
+		p.line(75, 160, 100, 160);
+		//legs
+		p.line(50, 200, 75, 175);
+		p.line(100, 200, 75, 175);
+		p.popMatrix();
+		p.stroke(0);
+		
+		current_Angle += angle_Change;
+		if(current_Angle > wave_Angle || current_Angle == 0) {
+			angle_Change *= -1;
+			if(current_Angle==0) {
+				DrawingSurface.isWaving = false;
+				tanCount++;
+			}
+		}
+	}
+	
+	public void move(int step) {
+		x += step;
+	}
+	
+	public void drawWaving(PApplet p) {
+		p.pushMatrix();
+		p.strokeWeight(10);
+		p.translate(70, 160);
+		p.rotate(p.radians(current_Angle));
+		p.line(0, 0, -36, 0);
+		p.strokeWeight(3);
+		p.popMatrix();
+	}
+	
+	public void drawRight(PApplet p) {
+		p.pushMatrix();
+		p.strokeWeight(10);
+		p.translate(70, 160);
+		p.line(0, 0, -36, 0);
+		p.strokeWeight(3);
+		p.popMatrix();
+	}
+	
+}

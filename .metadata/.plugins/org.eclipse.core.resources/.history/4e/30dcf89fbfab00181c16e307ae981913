@@ -1,0 +1,49 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import processing.awt.PSurfaceAWT;
+import processing.core.PApplet;
+import processing.core.PShape;
+
+public class DrawingSurface extends PApplet {
+	
+	public void draw() {
+		//make background white
+		background(255);
+		//chimney
+		fill(255, 0, 0);
+		rect(width/2.0f - width/3.0f, height/2.0f - height/3.0f, width/12.0f, height/6.0f);
+		//roof
+		fill(0, 255, 0);
+		triangle(width/2.0f - width/10.0f, height/2.0f - height/3.0f, width/2.0f - width/3.0f, height/2.0f - height/6.0f, width/2.0f + width/3.0f, height/2.0f - height/6.0f);
+		//main building
+		fill(0, 0, 255);
+		rect(width/2.0f - width/3.0f, height/2.0f - height/6.0f, 2*width/3.0f, height/2.0f);
+		//door
+		fill(50);
+		rect(width/2.0f - width/20, 4 * height/6.0f, width/10.0f, height/6.0f);
+		//window right
+		fill(5);
+		rect((width/2.0f - width/3.0f)*2 - width/10.0f, height/2.0f, width/10.0f, height/10.0f);
+		//window left
+		rect((width/2.0f + width/12.0f) + width/10.0f, height/2.0f, width/10.0f, height/10.0f);
+	}
+
+	public static void main(String args[]) {
+		DrawingSurface drawing = new DrawingSurface();
+		PApplet.runSketch(new String[] { "" }, drawing);
+		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+		JFrame window = (JFrame) canvas.getFrame();
+
+		window.setSize(300, 300);
+		window.setMinimumSize(new Dimension(100, 100));
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setResizable(true);
+		window.setBackground(Color.WHITE);
+
+		window.setVisible(true);
+		canvas.requestFocus();
+	}
+
+}

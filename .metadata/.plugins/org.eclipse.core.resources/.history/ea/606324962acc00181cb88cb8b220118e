@@ -1,0 +1,45 @@
+package zachary.shapes;
+
+import java.awt.geom.Point2D;
+
+import processing.core.PApplet;
+
+public abstract class Shape {
+
+	protected double x, y;
+	private int strokeWeight;
+	private int[] stroke;
+	
+	public Shape(double x, double y) {
+		this.x = x;
+		this.y = y;
+		this.strokeWeight = 1;
+		stroke = new int[3];
+		stroke[0] = 0;
+		stroke[1] = 0;
+		stroke[2] = 0;
+	}
+	
+	public void move(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
+	public void setStrokeWidth(int x) {
+		this.strokeWeight = x;
+	}
+	
+	public void draw(PApplet p) {
+		p.strokeWeight(strokeWeight);
+		p.stroke(stroke[0], stroke[1], stroke[2]);
+	}
+	
+}

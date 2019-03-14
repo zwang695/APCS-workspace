@@ -1,0 +1,22 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import processing.awt.PSurfaceAWT;
+import processing.core.PApplet;
+import processing.core.PShape;
+
+public class DrawingSurface extends PApplet {
+
+	private House house;
+	
+	public DrawingSurface() {
+		house = new House();
+	}
+	
+	public void draw() {
+		background(255);
+		
+		house.draw(this);
+	}
+	
+}

@@ -1,0 +1,29 @@
+package zachary.testers;
+import java.awt.geom.Point2D;
+
+import processing.core.PApplet;
+import zachary.shapes.*;
+
+public class DrawingSurface extends PApplet{
+	
+	private Rectangle rA;
+	private Circle rB;
+
+	public DrawingSurface() {
+		rA = null;
+		rB = null;
+	}
+	
+	public void draw() {
+		background(255);
+		fill(255);
+		textAlign(CENTER);
+		
+		if(rA != null) {
+			stroke(255, 0, 0);
+			fill(255);
+			rA.draw(this);
+			Point2D.Double center = rA.getCenter();
+		}
+	}
+}

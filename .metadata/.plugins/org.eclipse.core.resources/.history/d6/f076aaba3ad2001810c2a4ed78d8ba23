@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+
+import cchen.shapes.*;
+import processing.core.PApplet;
+
+public class DrawingSurface extends PApplet{
+
+	private PhysicsShape circles[];
+	private ArrayList<Line> lines;
+	
+	public DrawingSurface() {
+		lines = new ArrayList<Line>();
+		circles = new PhysicsShape[100];
+	}
+	
+	public void draw() {
+		background(255);
+		createCircles();
+		for(int i = 0; i < circles.length; i++) {
+			if(circles[i] != null && circles[i].getShape() != null) {
+				circles[i].draw(this);
+			}
+		}
+		for(Line l : lines) {
+			l.draw(this);
+		}
+	}
+	
+	public void createCircles() {
+		if(Math.random()>0.5) return;
+		
+		for(int i = 0; i < circles.length; i++) {
+			if(circles[i] == null || circles[i].getShape() == null) {
+				double x = Math.random() * 390;
+				circles[i] = new PhysicsShape(new Circle(x, -5, 10));
+				return;
+			}
+		}
+	}
+	
+	public void mouseDragged() {
+		for(Line l : lines) {
+			if (mouseButton == LEFT) {
+				l.setPoint2(mouseX,mouseY);
+			} else if (mouseButton == RIGHT)
+				l.setPoint2(mouseX,mouseY);
+		}
+	}
+	
+}

@@ -1,0 +1,52 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import processing.core.PApplet;
+
+public class House{
+
+	private float scaleFactor;
+	private float x, y;
+	private float width, height;
+	
+	public House() {
+		
+	}
+	
+	public House(float scaleFactor, float xCenter, float yCenter) {
+		this.scaleFactor = scaleFactor;
+		this.x = xCenter;
+		this.y = yCenter;
+	}
+	
+	public void draw(PApplet p) {
+		
+		p.translate(x-width, y-height);
+		
+		p.scale(1);
+		
+		//roof
+		p.fill(0, 255, 0);
+		p.triangle(100, 100, 300, 100, 200, 75);
+		//main building
+		p.fill(0, 0, 255);
+		p.rect(100, 100, 200, 100);
+		//door
+		p.fill(50);
+		p.rect(185, 160, 30, 40);
+		//window right
+		p.fill(5);
+		p.rect(120, 120, 30, 30);
+		//window left
+		p.rect(250, 120, 30, 30);
+		
+	}
+	
+	public void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+}

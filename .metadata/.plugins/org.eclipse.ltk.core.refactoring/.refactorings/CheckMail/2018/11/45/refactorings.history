@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;zachary.checkmail.checkmail&apos; to &apos;CheckMail&apos;&#x0D;&#x0A;- Original project: &apos;CheckMail&apos;&#x0D;&#x0A;- Original element: &apos;zachary.checkmail.checkmail&apos;&#x0D;&#x0A;- Renamed element: &apos;zachary.checkmail.CheckMail&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;checkmail&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;zachary.checkmail{checkmail.java[checkmail" matchStrategy="1" name="CheckMail" qualified="false" references="true" similarDeclarations="false" stamp="1541449849461" textual="false" version="1.0"/>
+</session>

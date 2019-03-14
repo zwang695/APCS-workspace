@@ -1,0 +1,152 @@
+//Integer ResizableArray
+
+//Functional Test
+[1, 1, 2, 3, 5, 8, 13]
+0
+4
+6
+-1
+true
+false
+Caught exception from a bad insert (this is a good thing). Message: Bad index in insert at: 10
+Caught exception from a bad remove (this is also a good thing). Message: Bad index in remove at:10
+[1, 1, 2, 3, 5, 8, 13]
+true
+[1, 5, 2, 3, 5, 8, 13]
+[1, 1, 2, 3, 5, 8, 13]
+
+
+
+//Efficiency 10
+The test took 8 milliseconds.
+And 440 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=2, References=1, Primitives=[int x 102]}
+
+
+//Efficiency 100
+The test took 16 milliseconds.
+And 840 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=2, References=1, Primitives=[int x 202]}
+
+
+
+//Efficiency 1000
+The test took 27 milliseconds.
+And 8040 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=2, References=1, Primitives=[int x 2002]}
+
+
+
+
+//Efficiency 10000
+The test took 121 milliseconds.
+And 80040 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=2, References=1, Primitives=[int x 20002]}
+
+
+
+
+//Efficiency 100000
+The test took 5689 milliseconds.
+And 800040 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=2, References=1, Primitives=[int x 200002]}
+
+
+
+//Generic ResizableArrays
+
+//Functional Test
+[1, 1, 2, 3, 5, 8, 13]
+0
+4
+6
+-1
+true
+false
+Caught exception from a bad insert (this is a good thing). Message: Index too big: 10
+Caught exception from a bad remove (this is also a good thing). Message: Index too big: 10
+[1, 1, 2, 3, 5, 8, 13]
+true
+[1, 5, 2, 3, 5, 8, 13]
+[1, 1, 2, 3, 5, 8, 13]
+
+//10
+The test took 4 milliseconds.
+And 600 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=12, References=101, Primitives=[int x 12]}
+
+
+//100
+The test took 6 milliseconds.
+And 6040 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=102, References=1101, Primitives=[int x 102]}
+
+//1000
+The test took 17 milliseconds.
+And 24440 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=1002, References=2101, Primitives=[int x 1002]}
+
+//10000
+The test took 140 milliseconds.
+And 240440 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=10002, References=20101, Primitives=[int x 10002]}
+
+//100000
+The test took 11297 milliseconds.
+And 2400440 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=100002, References=200101, Primitives=[int x 100002]}
+
+ArrayList:
+#1
+//100000
+The test took 3298 milliseconds.
+And 2560432 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=100002, References=240098, Primitives=[int x 100002]}
+
+The ArrayList was a lot faster than my ResizableArray class, and also used a little more memory than I did. The time was about 4 times less than my class.
+
+#2
+My Prediction: 3290 milliseconds, 2560432 bytes of memory
+I do not think the test is going to change much, as we are only eliminating the Math.random method calls. The memory should not change because we are putting in the same amount of numbers.
+
+The test took 6956 milliseconds.
+And 2560432 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=100002, References=240098, Primitives=[int x 100002]}
+
+This took double the amount of time than the original text. This makes sense because the insert and remove only remove at index 0, rather than at random values. This means you have to shift over the entire array's contents every single time.
+
+#3
+Prediction: 800 milliseconds, 2560432 bytes of memory
+This should be a lot faster, as you do not need to shift any contents over for insert and remove. The memory should stay the same as we are putting in the same amount of numbers.
+
+The test took 13 milliseconds.
+And 2560432 bytes of memory.
+
+Your ResizableArray contains the following: 
+Footprint{Objects=100002, References=240098, Primitives=[int x 100002]}
+
+Although it was faster, it was a lot faster than I thought it would have been. My logic for it being faster remains the same though. The memory does stay the same.

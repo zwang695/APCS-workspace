@@ -1,0 +1,19 @@
+package statistic;
+
+public class Statistic {
+
+	public static void main(String[] args) {
+		DataSet d = new DataSet();
+		int[] data = d.readFile("data/numbers.txt");
+		System.out.println(d.calcAvg());
+		int[] mode = d.calcMode();
+		for(int i : mode) {
+			if(i == 0) {
+				System.out.println();
+				break;	
+			}
+			System.out.print(i + " ");
+		}
+		System.out.println(d.calcStandardD());
+	}
+}

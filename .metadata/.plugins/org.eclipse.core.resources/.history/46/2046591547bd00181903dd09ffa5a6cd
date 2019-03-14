@@ -1,0 +1,28 @@
+package ripgpa;
+
+import processing.awt.PSurfaceAWT;
+import processing.core.PApplet;
+
+public class DrawingSurface extends PApplet{
+	
+	float x, y;
+	String s;
+	
+	public DrawingSurface() {
+		s = "rip gpa";
+		y = 0;
+	}
+	
+	public void draw() {
+		background(255);
+		
+		translate(x, y);
+		scale(width/400, height/300);
+		
+		fill((float)(Math.random()*255), (float)(Math.random()*255), (float)(Math.random()*255));
+		textSize(50);
+		text(s, 30, 30);
+		
+	}
+
+}

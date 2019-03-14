@@ -1,0 +1,48 @@
+package zachary.shapes;
+
+import java.awt.geom.Point2D;
+
+import processing.core.PApplet;
+
+public class Ellipse extends Shape2D{
+	
+	private double width, height;
+
+	public Ellipse() {
+		super(0, 0);
+	}
+	
+	public Ellipse(double x, double y, double width, double height) {
+		super(x, y);
+		this.width = width;
+		this.height = height;
+	}
+
+	public void draw(PApplet p) {
+		super.draw(p);
+	}
+
+	public double getPerimeter() {
+		return Math.PI*(3*(width/2 + height/2) - Math.sqrt((3*width/2 + height/2)*(3*height/2 + width/2)));
+	}
+
+	/**
+	 *  Calculates and returns the area of the ellipse
+	 * @return the area of the ellipse
+	 */
+	public double getArea() {
+		return Math.PI*width/2*height/2;
+	}
+
+	public boolean isPointInside(double x, double y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Point2D getCenter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

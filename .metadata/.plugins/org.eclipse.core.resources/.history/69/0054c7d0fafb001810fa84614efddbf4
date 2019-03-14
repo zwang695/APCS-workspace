@@ -1,0 +1,73 @@
+package statistic;
+
+import java.util.Arrays;
+
+public class DataSet {
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	
+	public int[] readFile(String filename) {
+		ArrayReader reader = new ArrayReader(filename);
+		int[] data = new int[1000];
+		reader.fillArray(data);
+		return data;
+	}
+	
+	public double calcAvg(int[] data) {
+		double sum = 0;
+		for(int i : data) sum += i;
+		return sum/data.length;
+	}
+	
+	public double calcStandardD(int[] data) {
+		double avg = calcAvg(data);
+		int sum = 0;
+		for(int i : data) sum += Math.pow(avg - i, 2);
+		return Math.sqrt(sum/(data.length-1));
+	}
+	
+	public double calcMode(int[] data) {
+		Arrays.sort(data);
+		int[] modes = new int[100];
+		int currMode = Integer.MAX_VALUE;
+		int currModeCount = 0;
+		int lastModeCount = 0;
+		int index = 0;
+		for(int i : data) {
+			if(data[0] == i) {
+				currMode = i;
+				currModeCount++;
+				continue;
+			}
+			if(i==currMode) {
+				currModeCount++;
+				continue;
+			}
+			else {
+				if(data[0] == i) {
+					modes[index] = currMode;
+					index++;
+					currMode = i;
+					lastModeCount = currModeCount;
+					currModeCount = 1;
+				}
+				else {
+					if(currModeCount==lastModeCount) {
+						modes[index] = currMode;
+						index++;
+						currMode = i;
+						lastModeCount = currModeCount;
+						currModeCount = 1;
+					}
+					else if(currModeCount > lastModeCount) {
+						
+					}
+				}
+			}
+		}
+	}
+	
+}

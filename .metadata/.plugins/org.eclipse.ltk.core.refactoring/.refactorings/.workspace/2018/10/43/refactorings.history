@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Copy 0 elements to &apos;Shapes/src/zachary.testers&apos;&#x0D;&#x0A;- Destination element: &apos;Shapes/src/zachary.testers&apos;" description="Copy compilation units" destination="=Shapes/src&lt;zachary.testers" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1540408185981" units="0" version="1.0"/>&#x0A;<refactoring comment="Delete resource &apos;test&apos;" deleteContents="false" description="Delete resource &apos;test&apos;" element1="/test" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1540410561414"/>
+</session>

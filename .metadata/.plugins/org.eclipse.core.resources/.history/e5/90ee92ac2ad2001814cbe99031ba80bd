@@ -1,0 +1,20 @@
+import cchen.shapes.Rectangle;
+import processing.core.PApplet;
+
+public class DrawingSurface extends PApplet{
+
+	private PhysicsShape shape;
+	
+	public DrawingSurface() {
+		shape = new PhysicsShape(new Rectangle(50, 50, 50, 50));
+	}
+	
+	public void draw() {
+		background(255);
+		shape.draw(this);
+	}
+	
+	public void mouseDragged() {
+		shape.moveTo(super.mouseX, super.mouseY);
+	}
+}

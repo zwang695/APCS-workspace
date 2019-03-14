@@ -1,0 +1,57 @@
+Recursion:
+
+10 - Output was 55 and it took 6419 nanoseconds
+20 - Output was 6765 and it took 409297 nanoseconds
+30 - Output was 832040 and it took 3893609 nanoseconds
+40 - Output was 102334155 and it took 469609880 nanoseconds
+45 - Output was 1134903170 and it took 4657351508 nanoseconds
+
+1 - 1
+2 - 1
+3 - 3
+4 - 5
+5 - 9
+6 - 15
+7 - 25
+8 - 41
+9 - 67
+10 - 109
+
+Loop:
+
+10 - Output was 55 and it took 4531 nanoseconds
+20 - Output was 6765 and it took 3020 nanoseconds
+30 - Output was 832040 and it took 4153 nanoseconds
+40 - Output was 102334155 and it took 9062 nanoseconds
+45 - Output was 1134903170 and it took 7929 nanoseconds	
+
+1 - 0
+2 - 0
+3 - 0
+4 - 1
+5 - 2
+6 - 3
+7 - 4
+8 - 5
+9 - 6
+10 - 7
+
+1) In the loop, each increase in n results in a small change in the number of nanoseconds. However, for the recursion, each increase in nanoseconds is a drastic change. There is so much variation as recursion also have to deal with method calls.
+2) In the loop, each increase in N results in the same change in the number of iterations after n being 4. However, for recursion, each increase in iterations is almost 2 times as the same iteration before. 
+3) iteration = n - 3 <- for loops once n is greater than or equal to 4 iteration = (2^0.6779n) - 1.33235
+4) Looping is a lot faster as it does not have to deal with method calls.
+
+Hanoi Data-----
+1 - 1
+2 - 3
+3 - 7
+4 - 15
+5 - 31
+6 - 63
+7 - 127
+8 - 255
+9 - 511
+10 - 1023
+
+equation: 2^n - 1 = iterations
+

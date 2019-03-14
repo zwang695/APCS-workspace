@@ -1,0 +1,62 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import processing.awt.PSurfaceAWT;
+import processing.core.PApplet;
+import processing.core.PShape;
+
+public class DrawingSurface extends PApplet {
+
+	private House house;
+	private Person person;
+	private boolean isWaving;
+	
+	public DrawingSurface() {
+		house = new House(this);
+		person = new Person();
+	}
+	
+	public void draw() {
+		frameRate(30);
+		smooth();
+		background(255);
+		scale(width/400f, height/300f);
+		
+		house.draw(this);
+		person.draw(this, isWaving);
+	}
+	
+	public void mousePressed() {
+		//house.move(mouseX - width/2, mouseY - height/2);
+		house.move(mouseX, mouseY);
+	}
+	
+	public void keyPressed() {
+		if(key==CODED) {
+			if(keyCode==UP) {
+				house.resize(0.1f);
+			}
+			else if(keyCode==DOWN) {
+				house.resize(-0.1f);
+			}
+			if(keyCode==LEFT) {
+				person.move(-2);
+			}
+			else if(keyCode==RIGHT) {
+				person.move(2);
+			}
+			else if(keyCode==SHIFT) {
+				isWaving = true;
+				for(int i = 0; i < 60; i++) {
+					try {
+						person.drawWaving(this);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				isWaving = false;
+			}
+		}
+	}
+}

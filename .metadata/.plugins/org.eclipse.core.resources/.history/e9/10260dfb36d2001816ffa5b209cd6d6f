@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+
+import cchen.shapes.*;
+import processing.core.PApplet;
+
+public class DrawingSurface extends PApplet{
+
+	private PhysicsShape circles[];
+	private ArrayList<Line> lines;
+	
+	public DrawingSurface() {
+		lines = new ArrayList<Line>();
+		circles = new PhysicsShape[100];
+		//shape = new PhysicsShape(new Circle(50, 50, 25));
+	}
+	
+	public void draw() {
+		background(255);
+		System.out.println(1);
+		createCircles();
+		for(int i = 0; i < circles.length; i++) {
+			if(circles[i] != null) {
+				circles[i].draw(this);
+			}
+		}
+	}
+	
+	public void createCircles() {
+		if(Math.random()>0.5) return;
+		
+		for(int i = 0; i < circles.length; i++) {
+			if(circles[i] == null) {
+				double x = Math.random() * 390;
+				circles[i] = new PhysicsShape(new Circle(x, -5, 10));
+				return;
+			}
+		}
+	}
+}

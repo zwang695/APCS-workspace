@@ -1,0 +1,12 @@
+package ripgpa;
+
+import processing.awt.PSurfaceAWT;
+
+public class DrawingSurface {
+
+	public PSurfaceAWT getSurface() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

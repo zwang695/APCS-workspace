@@ -1,0 +1,115 @@
+package zachary.shapes;
+import processing.core.PApplet;
+
+/**
+ * This class represents a double precision line, that draws a line and can calculate whether it 
+ * intersects with another line
+ * 
+ * @author Zachary Wang
+ * @version 9/27/2018
+ */
+
+public class Line {
+
+	private double x1, y1, x2, y2;
+	
+	private double ix, iy;
+	
+	/**
+	 * Creates a new instance of the line object with the first drawn point having coordinates
+	 * x1, y1, and the second drawn point having coordinates x2, y2
+	 * @param x1 x coordinate of the first point
+	 * @param y1 y coordinate of the first point
+	 * @param x2 x coordinate of the second point
+	 * @param y2 y coordinate of the second point
+	 */
+	public Line(double x1, double y1, double x2, double y2) {
+		this.x1 = x1;
+		this.y1 = y1;
+		this.x2 = x2;
+		this.y2 = y2;
+	}
+
+	/**
+	 * This takes in the point x2, y2 and sets the second point as it
+	 * @param x2 x coordinate of the second point
+	 * @param y2 y coordinate of the second point
+	 */
+	public void setPoint2(double x2, double y2) {
+		this.x2 = x2;
+		this.y2 = y2;
+	}
+	
+	/**
+	 *  Draws a new instance of a Line object with the first point at x1, y1
+	 *  and the second point at x2, y2
+	 * @param p the reference of the PApplet used to draw the circle
+	 * @pre p must not be null, and appropriate settings should have been selected (color, fill, etc)
+	 */
+	public void draw(PApplet p) {
+		p.pushMatrix();
+		p.line((float) x1,(float) y1,(float) x2,(float) y2);
+		p.ellipse((float)ix, (float)iy, 3, 3);
+		p.popMatrix();
+	}
+	
+	/**
+	 * Determines whether this line intersects with another line
+	 * @param other the reference of the other line we are testing
+	 * @return true if the lines intersect
+	 */
+	public boolean intersects(Line other) {
+		double intersectX = getIntersectX(other);
+		double intersectY = getIntersectY(other);
+		if(intersectX == Double.MAX_VALUE || intersectY == Double.MAX_VALUE) {
+			System.out.println("same");
+			return false;
+		}
+		
+		if(isBetween(intersectX, x1, x2) &&
+		   isBetween(intersectX, other.x1, other.x2) &&
+		   isBetween(intersectY, y1, y2) &&
+		   isBetween(intersectY, other.y1, other.y2)) return true;
+		return false;
+	}
+	
+	private boolean isBetween(double pt, double x1, double x2) {
+		if(pt >= x1 && pt <= x2) return true;
+		else if(pt <= x1 && pt >= x2) return true;
+		else return false;
+	}
+	
+	private double getIntersectX(Line other) {
+		try {
+			double x3 = other.x1;
+			double x4 = other.x2;
+			double y3 = other.y1;
+			double y4 = other.y2;
+			double num = (x1 * y2 - y1 * x2)*(x3 - x4) - (x1 - x2)*(x3 * y4 - y3 * x4);
+			double denom = (x1 - x2)*(y3 - y4) - (y1 - y2)*(x3 - x4);
+			ix = num/denom;
+			return num/denom;
+		}
+		catch(Exception e) {
+			System.out.println(1);
+			return Double.MAX_VALUE;
+		}
+	}
+	
+	private double getIntersectY(Line other) {
+		try {
+			double x3 = other.x1;
+			double x4 = other.x2;
+			double y3 = other.y1;
+			double y4 = other.y2;
+			double num = (x1 * y2 - y1 * x2)*(y3 - y4) - (y1 - y2)*(x3 * y4 - y3 * x4);
+			double denom = (x1 - x2)*(y3 - y4) - (y1 - y2)*(x3 - x4);
+			iy = num/denom;
+			return num/denom;
+		}
+		catch(Exception e) {
+			System.out.println(2);
+			return Double.MAX_VALUE;
+		}
+	}
+}

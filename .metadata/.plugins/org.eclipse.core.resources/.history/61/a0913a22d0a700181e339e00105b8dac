@@ -1,0 +1,15 @@
+import java.awt.Color;
+
+import info.gridworld.actor.Flower;
+
+public class Explosion extends Flower{
+	
+	public Explosion() {
+		setColor(new Color(0, 0, 0));
+	}
+	
+	public void act() {
+		
+	}
+	
+}

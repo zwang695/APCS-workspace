@@ -1,0 +1,15 @@
+package maze;
+
+import processing.core.PApplet;
+
+public class DrawingSurface extends PApplet{
+	
+	private Maze board;
+	
+	public DrawingSurface() {
+		board = new Maze("data/data2/test4.txt");
+		board.solve();
+		System.out.println(board);
+	}
+
+}

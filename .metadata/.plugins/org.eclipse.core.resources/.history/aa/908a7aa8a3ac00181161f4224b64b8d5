@@ -1,0 +1,77 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import processing.core.PApplet;
+
+public class House{
+
+	private float scaleFactor;
+	private float x, y;
+	private float rX2, rY2, rX3, rY3; //roof dimensions - point 1 has the same location as bX/bY
+	private float bX, bY, bW, bH; //main building dimensions
+	private float dX, dY, dW, dH; //door dimensions
+	private float wR; //window length/width
+	private float wY, wX1, wX2; //window dimensions
+	
+	public House(PApplet p) {
+		scaleFactor = 1;
+		
+		x = p.width*scaleFactor/2;
+		y = p.height*scaleFactor/2;
+		
+		bX = 100f;
+		bY = 100f;
+		rX2 = 300f;
+		rY2 = 100f;
+		rX3 = 200f;
+		rY3 = 75f;
+		bW = 200f;
+		bH = 100f;
+		dX = 185f;
+		dY = 160f;
+		dW = 30f;
+		dH = 40f;
+		wR = 30f;
+		wY = 120f;
+		wX1 = 120f;
+		wX2 = 250f;
+	}
+	
+	public void draw(PApplet p) {
+		
+		//p.translate(x - p.width*scaleFactor/2, y - p.height*scaleFactor/2);
+		p.translate(x, y);
+		
+		p.scale(scaleFactor);
+		
+		//roof
+		p.fill(0, 255, 0);
+		p.triangle(bX, bY, rX2, rY2, rX3, rY3);
+		//main building
+		p.fill(0, 0, 255);
+		p.rect(bX, bY, bW, bY);
+		//door
+		p.fill(50);
+		p.rect(dX, dY, dW, dH);
+		//window right
+		p.fill(5);
+		p.rect(wX1, wY, wR, wR);
+		//window left
+		p.rect(wX2, wY, wR, wR);
+		
+	}
+	
+	public void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void resize(float add) {
+		scaleFactor+=add;
+//		bX-=add;
+//		wX1-=add;
+	}
+	
+}
