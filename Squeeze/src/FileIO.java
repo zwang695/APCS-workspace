@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileIO {
+	
+	public static final String fileSep = System.getProperty("file.separator");
+	public static final String lineSep = System.getProperty("line.separator");
 
 	public static ArrayList<String> readFile(String filename) throws IOException{
 		
@@ -32,13 +35,18 @@ public class FileIO {
 	}
 	
 	public static void writeFile(String filename, ArrayList<String> fileData) throws IOException {
-		FileWriter writer = new FileWriter(filename);
-		
-		for(String s : fileData) {
-			writer.write(s + "\n");
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(filename);
+			
+			for(String s : fileData) {
+				writer.write(s);
+				writer.write(lineSep);
+			}
 		}
-		
-		writer.close();
+		finally {
+			if(writer != null) writer.close();	
+		}
 	}
 
 }
