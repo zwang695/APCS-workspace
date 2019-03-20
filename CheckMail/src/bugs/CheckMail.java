@@ -58,16 +58,34 @@ public class CheckMail {
         controls.add(dim2);
         controls.add(dim3);
         p.add(controls, BorderLayout.CENTER);
-
-        JOptionPane.showMessageDialog(
-            null, p, "Enter Package Properties", JOptionPane.QUESTION_MESSAGE);
         
-        double w = Double.parseDouble(weight.getText());
-        double d1 = Double.parseDouble(dim1.getText());
-        double d2 = Double.parseDouble(dim2.getText());
-        double d3 = Double.parseDouble(dim3.getText());
+        Package pack = null;
         
-        Package pack = new Package(w,d1,d2,d3);
+        while(pack == null) {
+        	
+        	int output = JOptionPane.showConfirmDialog(
+                    null, p, "Enter Package Properties", JOptionPane.QUESTION_MESSAGE);
+        	
+        	if(output != JOptionPane.OK_OPTION) {
+        		JOptionPane.showMessageDialog(null, "Goodbye");
+        		return;
+        	}
+        
+	        try {
+	        
+	        double w = Double.parseDouble(weight.getText());
+	        double d1 = Double.parseDouble(dim1.getText());
+	        double d2 = Double.parseDouble(dim2.getText());
+	        double d3 = Double.parseDouble(dim3.getText());
+	        
+	        pack = new Package(w,d1,d2,d3);
+	        
+	        } catch (NumberFormatException e) {
+	        	
+	        } catch (IllegalArgumentException e) {
+	        	
+	        }
+        }
         
         int z = pack.checkStatus();
         

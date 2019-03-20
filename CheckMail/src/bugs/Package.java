@@ -32,6 +32,9 @@ public class Package {
 		this.dim2 = dim2;
 		this.dim3 = dim3;
 		this.weight = weight;
+		if(dim1 <= 0 || dim2 <= 0 || dim3 <= 0 || weight <= 0)
+			throw new IllegalArgumentException("Invalid Package parameters: " + dim1 + " " + dim2 + " " + dim3 + " " + weight);
+			
 	}
 	
 	
