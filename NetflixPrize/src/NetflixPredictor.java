@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -5,7 +6,11 @@ public class NetflixPredictor {
 
 
 	// Add fields to represent your database.
-
+	ArrayList<Movie> movies;
+	ArrayList<Rating> ratings;
+	ArrayList<Tag> tags;
+	ArrayList<User> users;                                               
+	
 
 	/**
 	 * 
@@ -17,6 +22,35 @@ public class NetflixPredictor {
 	 * @param linkFilePath The full path to the links database.
 	 */
 	public NetflixPredictor (String movieFilePath, String ratingFilePath, String tagFilePath, String linkFilePath) {
+		MovieLensCSVTranslator translator = new MovieLensCSVTranslator();
+		movies = new ArrayList<Movie>();
+		tags = new ArrayList<Tag>();
+		ratings = new ArrayList<Rating>();
+		users = new ArrayList<User>();
+		try {
+			ArrayList<String> movieStrs = FileIO.readFile(movieFilePath);
+			ArrayList<String> linkStrs = FileIO.readFile(linkFilePath);
+			for(int i = 0; i < movieStrs.size(); i++) {
+				Movie m = translator.translateMovie(movieStrs.get(i));
+				System.out.println(m);
+				if(m == null) continue;
+				translator.translateLinks(m, linkStrs.get(i));
+				movies.add(m);
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}		
+		
+		try {
+			ArrayList<String> ratingStrs = FileIO.readFile(ratingFilePath);
+			for(String s : ratingStrs) {
+				Rating r = translator.translateRating(s);
+				if(r == null) continue;
+				ratings.add(r);
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 		
@@ -28,6 +62,11 @@ public class NetflixPredictor {
 	 * @return The rating that userNumber gave movieNumber, or -1 if the user does not exist in the database, the movie does not exist, or the movie has not been rated by this user.
 	 */
 	public double getRating(int userID, int movieID) {
+		for(Rating r : ratings) {
+			if(r.getUserID() != userID) continue;
+			if(r.getMovieID() != movieID) continue;
+			return r.getStars();
+		}
 		
 		return -1;
 	}

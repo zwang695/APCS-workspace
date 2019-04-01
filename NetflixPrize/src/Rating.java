@@ -18,4 +18,16 @@ public class Rating {
 		return userID + "," + movieID + "," + stars + "," + timestamp;
 	}
 	
+	public int getUserID() {
+		return userID;
+	}
+	
+	public int getMovieID() {
+		return movieID;
+	}
+	
+	public double getStars() {
+		return stars;
+	}
+	
 }
