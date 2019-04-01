@@ -28,7 +28,7 @@ public class NetflixPredictor {
 	 * @return The rating that userNumber gave movieNumber, or -1 if the user does not exist in the database, the movie does not exist, or the movie has not been rated by this user.
 	 */
 	public double getRating(int userID, int movieID) {
-
+		
 		return -1;
 	}
 	
