@@ -7,7 +7,7 @@ public class Movie {
 	private String title;
 	private String[] genres;
 	private ArrayList<String> Tags;
-	private ArrayList<String> Ratings;
+	private ArrayList<String> ratings;
 	private String imdb;
 	private String tmdb;
 	
@@ -48,6 +48,10 @@ public class Movie {
 	public void setLinks(String imdb, String tmdb) {
 		this.imdb = imdb;
 		this.tmdb = tmdb;
+	}
+	
+	public void setRatings(ArrayList<String> ratings) {
+		this.ratings = ratings;
 	}
 
 }

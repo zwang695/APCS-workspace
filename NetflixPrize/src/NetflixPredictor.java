@@ -51,7 +51,6 @@ public class NetflixPredictor {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 		
 	/**
@@ -63,8 +62,7 @@ public class NetflixPredictor {
 	 */
 	public double getRating(int userID, int movieID) {
 		for(Rating r : ratings) {
-			if(r.getUserID() != userID) continue;
-			if(r.getMovieID() != movieID) continue;
+			if(r.getUserID() != userID || r.getMovieID() != movieID) continue;
 			return r.getStars();
 		}
 		
@@ -80,8 +78,14 @@ public class NetflixPredictor {
 	 * @pre A user with id userID and a movie with id movieID exist in the database.
 	 */
 	public double guessRating(int userID, int movieID) {
-
-		return 0;
+		
+		double stars = getRating(userID, movieID);
+		if(stars != -1) return stars;
+		
+		User u = new User(userID);
+		
+		
+		return 3.5;
 	}
 	
 	/**
