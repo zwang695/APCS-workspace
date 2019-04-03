@@ -49,8 +49,14 @@ public class NetflixPredictor {
 			Movie m = movies.get(r.getMovieID());
 			m.addRating(u, r);
 			u.addRating(m, r);
-			if(r.getUserID() == 190 && r.getMovieID() == 1704) System.out.println(users.get(190).getRating(movies.get(1704)));
+			if(r.getUserID() == 190 && r.getMovieID() == 1704) {
+				System.out.println(users.get(190));
+				System.out.println(movies.get(1704));
+				System.out.println(users.get(190).getRating(movies.get(1704)));
+			}
 		}
+		System.out.println(users.get(190));
+		System.out.println(movies.get(1704));
 		System.out.println(users.get(190).getRating(movies.get(1704)));
 	}
 		
@@ -62,8 +68,6 @@ public class NetflixPredictor {
 	 * @return The rating that userNumber gave movieNumber, or -1 if the user does not exist in the database, the movie does not exist, or the movie has not been rated by this user.
 	 */
 	public double getRating(int userID, int movieID) {
-		System.out.println(users.get(190));
-		System.out.println(movies.get(1704));
 		if (users.containsKey(userID)) {
 			User u = users.get(userID);
 			if(u.getRating(movies.get(movieID)) != null) return u.getRating(movies.get(movieID)).getStars();
