@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Movie {
 	
@@ -7,7 +8,7 @@ public class Movie {
 	private String title;
 	private String[] genres;
 	private ArrayList<String> Tags;
-	private ArrayList<String> ratings;
+	private HashMap<User, Rating> ratings;
 	private String imdb;
 	private String tmdb;
 	
@@ -16,6 +17,7 @@ public class Movie {
 		this.year = year;
 		this.title = title;
 		this.genres = genres;
+		ratings = new HashMap<User, Rating>();
 	}
 	
 	public String toString() {
@@ -50,8 +52,12 @@ public class Movie {
 		this.tmdb = tmdb;
 	}
 	
-	public void setRatings(ArrayList<String> ratings) {
-		this.ratings = ratings;
+	public int getID() {
+		return id;
 	}
-
+	
+	public void addRating(User u, Rating r) {
+		ratings.put(u, r);
+	}
+	
 }

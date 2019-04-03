@@ -92,6 +92,8 @@ public class NetflixTester {
 				if (val < 0) {
 					System.out.println("No rating returned from getRating for a movie that was rated by user!");
 					System.out.println("(This probably means you're reading in the database incorrectly)");
+					System.out.println(users.get(testIndex));
+					System.out.println(movies.get(testIndex).get(testIndex2));
 					System.exit(0);
 				}
 				numberTested++;

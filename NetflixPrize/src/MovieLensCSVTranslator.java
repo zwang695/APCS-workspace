@@ -4,7 +4,6 @@ import java.util.Arrays;
 public class MovieLensCSVTranslator {
 	
 	public Movie translateMovie(String line) {
-		if(line.indexOf("movieId") != -1) return null;
 		int id;
 		int year;
 		String title;
@@ -35,7 +34,6 @@ public class MovieLensCSVTranslator {
 	}
 	
 	public void translateLinks(Movie m, String line) {
-		if(line.indexOf("movieId") != -1) return;
 		line = line.substring(line.indexOf(",") + 1);
 		String imdb = line.substring(0, line.indexOf(","));
 		line = line.substring(line.indexOf(",") + 1);
@@ -50,7 +48,6 @@ public class MovieLensCSVTranslator {
 	}
 	
 	public Rating translateRating(String line) {
-		if(line.indexOf("userId") != -1) return null;
 		int userID;
 		int movieID;
 		double stars;

@@ -1,17 +1,16 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class NetflixPredictor {
 
 
 	// Add fields to represent your database.
-	ArrayList<Movie> movies;
-	ArrayList<Rating> ratings;
-	ArrayList<Tag> tags;
-	ArrayList<User> users;                                               
+	HashMap<Integer, Movie> movies; //movieID, the movie                             
+	HashMap<Integer, User> users; //userID, the user
 	
-
+	
 	/**
 	 * 
 	 * Use the file names to read all data into some local structures. 
@@ -23,34 +22,36 @@ public class NetflixPredictor {
 	 */
 	public NetflixPredictor (String movieFilePath, String ratingFilePath, String tagFilePath, String linkFilePath) {
 		MovieLensCSVTranslator translator = new MovieLensCSVTranslator();
-		movies = new ArrayList<Movie>();
-		tags = new ArrayList<Tag>();
-		ratings = new ArrayList<Rating>();
-		users = new ArrayList<User>();
-		try {
-			ArrayList<String> movieStrs = FileIO.readFile(movieFilePath);
-			ArrayList<String> linkStrs = FileIO.readFile(linkFilePath);
-			for(int i = 0; i < movieStrs.size(); i++) {
-				Movie m = translator.translateMovie(movieStrs.get(i));
-				System.out.println(m);
-				if(m == null) continue;
-				translator.translateLinks(m, linkStrs.get(i));
-				movies.add(m);
-			}
-		} catch(IOException e) {
-			e.printStackTrace();
-		}		
+		ArrayList<String> movieStrs = null;
+		ArrayList<String> ratingStrs = null;
+		
+		movies = new HashMap<Integer, Movie>();
+		users = new HashMap<Integer, User>();
 		
 		try {
-			ArrayList<String> ratingStrs = FileIO.readFile(ratingFilePath);
-			for(String s : ratingStrs) {
-				Rating r = translator.translateRating(s);
-				if(r == null) continue;
-				ratings.add(r);
-			}
+			movieStrs = FileIO.readFile(movieFilePath);
+			ratingStrs = FileIO.readFile(ratingFilePath);
+			movieStrs.remove(0);
+			ratingStrs.remove(0);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		for(String s : movieStrs) {
+			Movie m = translator.translateMovie(s);
+			movies.put(m.getID(), m);
+		}
+		
+		for(String s : ratingStrs) {
+			Rating r = translator.translateRating(s);
+			User u = new User(r.getUserID());
+			users.put(r.getUserID(), u);
+			Movie m = movies.get(r.getMovieID());
+			m.addRating(u, r);
+			u.addRating(m, r);
+			if(r.getUserID() == 190 && r.getMovieID() == 1704) System.out.println(users.get(190).getRating(movies.get(1704)));
+		}
+		System.out.println(users.get(190).getRating(movies.get(1704)));
 	}
 		
 	/**
@@ -61,11 +62,12 @@ public class NetflixPredictor {
 	 * @return The rating that userNumber gave movieNumber, or -1 if the user does not exist in the database, the movie does not exist, or the movie has not been rated by this user.
 	 */
 	public double getRating(int userID, int movieID) {
-		for(Rating r : ratings) {
-			if(r.getUserID() != userID || r.getMovieID() != movieID) continue;
-			return r.getStars();
+		System.out.println(users.get(190));
+		System.out.println(movies.get(1704));
+		if (users.containsKey(userID)) {
+			User u = users.get(userID);
+			if(u.getRating(movies.get(movieID)) != null) return u.getRating(movies.get(movieID)).getStars();
 		}
-		
 		return -1;
 	}
 	
@@ -81,8 +83,6 @@ public class NetflixPredictor {
 		
 		double stars = getRating(userID, movieID);
 		if(stars != -1) return stars;
-		
-		User u = new User(userID);
 		
 		
 		return 3.5;
