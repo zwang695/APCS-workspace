@@ -7,7 +7,7 @@ public class MovieLensCSVTranslator {
 		int id;
 		int year;
 		String title;
-		String[] genres = new String[0];
+		Genre[] genres = new Genre[0];
 		boolean hasQuotes = false;
 		int index = line.indexOf(',');
 		
@@ -27,7 +27,12 @@ public class MovieLensCSVTranslator {
 		line = line.substring(line.lastIndexOf(',') + 1);
 		
 		if(line.indexOf("(no genres listed") == -1) {
-			genres = line.split("\\|");
+			String[] strs;
+			strs = line.split("\\|");
+			genres = new Genre[strs.length];
+			for(int i = 0; i < strs.length; i++) {
+				genres[i] = new Genre(strs[i]);
+			}
 		}
 		
 		return new Movie(id, year, title, genres);

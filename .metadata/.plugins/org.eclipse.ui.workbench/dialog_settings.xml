@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="614" key="DIALOG_X_ORIGIN"/>
+		<item value="8" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="950" key="dialogHeight"/>
 		<item value="1161" key="dialogWidth"/>
@@ -19,9 +23,9 @@
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textArray">
-			<item value="v"/>
 			<item value="d"/>
 			<item value="var"/>
+			<item value="variable"/>
 			<item value="debug"/>
 			<item value="deb"/>
 			<item value="console"/>

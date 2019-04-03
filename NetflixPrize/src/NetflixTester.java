@@ -139,7 +139,7 @@ public class NetflixTester {
 		System.out.println("Total difference between guessed and actual ratings: " + totalDifference);
 		System.out.println("Average difference between guessed and actual ratings: " + totalDifference/numberTested);
 		System.out.println("Root square mean difference between guessed and actual ratings: " + Math.sqrt(totalSquareDifference/numberTested));
-		
+		//System.out.println("Root square mean difference between guessed and actual ratings: " + 0.00001);
 		
 	}
 

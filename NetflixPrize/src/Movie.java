@@ -1,18 +1,20 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Movie {
 	
 	private int id;
 	private int year;
 	private String title;
-	private String[] genres;
+	private Genre[] genres;
 	private ArrayList<String> Tags;
 	private HashMap<User, Rating> ratings;
 	private String imdb;
 	private String tmdb;
+	private double avgR;
 	
-	public Movie(int id, int year, String title, String[] genres) {
+	public Movie(int id, int year, String title, Genre[] genres) {
 		this.id = id;
 		this.year = year;
 		this.title = title;
@@ -35,8 +37,8 @@ public class Movie {
 			s.append("\"");
 		}
 		s.append(",");
-		for(String f : genres) {
-			s.append(f);
+		for(Genre g : genres) {
+			s.append(g);
 			s.append("|");
 		}
 		s.append(",");
@@ -60,4 +62,17 @@ public class Movie {
 		ratings.put(u, r);
 	}
 	
+	public Genre[] getGenre() {
+		return genres;
+	}
+	
+	public void calcAvgR() {
+		double sum = 0;
+		int count = 0;
+		for(Map.Entry<User, Rating> e : ratings.entrySet()) {
+			sum += e.getValue().getStars();
+			count++;
+		}
+		avgR = sum/count;
+	}
 }

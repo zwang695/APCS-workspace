@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class NetflixPredictor {
@@ -44,20 +45,30 @@ public class NetflixPredictor {
 		
 		for(String s : ratingStrs) {
 			Rating r = translator.translateRating(s);
-			User u = new User(r.getUserID());
-			users.put(r.getUserID(), u);
+			User u = null;
+			if(!users.containsKey(r.getUserID())) {
+				u = new User(r.getUserID());
+				users.put(r.getUserID(), u);
+			}
+			else {
+				u = users.get(r.getUserID());
+			}
 			Movie m = movies.get(r.getMovieID());
 			m.addRating(u, r);
 			u.addRating(m, r);
-			if(r.getUserID() == 190 && r.getMovieID() == 1704) {
-				System.out.println(users.get(190));
-				System.out.println(movies.get(1704));
-				System.out.println(users.get(190).getRating(movies.get(1704)));
-			}
 		}
-		System.out.println(users.get(190));
-		System.out.println(movies.get(1704));
-		System.out.println(users.get(190).getRating(movies.get(1704)));
+		
+		//calculate average rating per genre per user
+		for(Map.Entry<Integer, User> e : users.entrySet()) {
+			User u = e.getValue();
+			u.calcAvgR();
+		}
+		
+		//calculate average rating per movie
+		for(Map.Entry<Integer, Movie> e : movies.entrySet()) {
+			e.getValue().calcAvgR();
+		}
+		
 	}
 		
 	/**
@@ -88,8 +99,8 @@ public class NetflixPredictor {
 		double stars = getRating(userID, movieID);
 		if(stars != -1) return stars;
 		
-		
-		return 3.5;
+		//double sum = users.get(userID)
+		return 0;
 	}
 	
 	/**
