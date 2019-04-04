@@ -66,6 +66,10 @@ public class Movie {
 		return genres;
 	}
 	
+	public double getAvgR() {
+		return avgR;
+	}
+	
 	public void calcAvgR() {
 		double sum = 0;
 		int count = 0;

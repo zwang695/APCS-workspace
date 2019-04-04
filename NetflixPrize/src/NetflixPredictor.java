@@ -99,8 +99,24 @@ public class NetflixPredictor {
 		double stars = getRating(userID, movieID);
 		if(stars != -1) return stars;
 		
-		//double sum = users.get(userID)
-		return 0;
+		Movie m = movies.get(movieID);
+		
+		double sum = 0;
+		int count = 0;
+		for(Genre g : m.getGenre()) {
+			sum += users.get(userID).getAvgR(g.getCount());
+			count++;
+		}
+		
+		if(!Double.isNaN(m.getAvgR())) {
+			sum += m.getAvgR();
+			count++;
+		}
+		
+		double ans = sum/count;
+		if(Double.isNaN(ans)) return 3.5;
+		
+		return ans;
 	}
 	
 	/**

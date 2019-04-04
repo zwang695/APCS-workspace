@@ -22,10 +22,14 @@ public class Genre {
 		return name;
 	}
 	
+	public double getAvgR() {
+		return avgR;
+	}
+	
 	public int getCount() {
 		for(int i = 0; i < AVAILGENRES.length; i++) {
 			if(AVAILGENRES[i] == name) return i;
 		}
-		return -1;
+		return 18;
 	}
 }

@@ -35,6 +35,10 @@ public class User {
 		return id;
 	}
 	
+	public double getAvgR(int index) {
+		return avgR[index].getAvgR();
+	}
+	
 	public void calcAvgR() {
 		double[] sum = new double[19];
 		int[] count = new int[19];
