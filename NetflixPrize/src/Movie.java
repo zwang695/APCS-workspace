@@ -79,4 +79,16 @@ public class Movie {
 		}
 		avgR = sum/count;
 	}
+	
+	public int getYear() {
+		return year;
+	}
+	
+	public String getImdb() {
+		return imdb;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
 }

@@ -25,6 +25,7 @@ public class NetflixPredictor {
 		MovieLensCSVTranslator translator = new MovieLensCSVTranslator();
 		ArrayList<String> movieStrs = null;
 		ArrayList<String> ratingStrs = null;
+		ArrayList<String> linkStrs = null;
 		
 		movies = new HashMap<Integer, Movie>();
 		users = new HashMap<Integer, User>();
@@ -32,15 +33,18 @@ public class NetflixPredictor {
 		try {
 			movieStrs = FileIO.readFile(movieFilePath);
 			ratingStrs = FileIO.readFile(ratingFilePath);
+			linkStrs = FileIO.readFile(linkFilePath);
 			movieStrs.remove(0);
 			ratingStrs.remove(0);
+			linkStrs.remove(0);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		
-		for(String s : movieStrs) {
-			Movie m = translator.translateMovie(s);
+		for(int i = 0; i < movieStrs.size(); i++) {
+			Movie m = translator.translateMovie(movieStrs.get(i));
 			movies.put(m.getID(), m);
+			translator.translateLinks(m, linkStrs.get(i));
 		}
 		
 		for(String s : ratingStrs) {
@@ -127,8 +131,25 @@ public class NetflixPredictor {
 	 * @pre A user with id userID exists in the database.
 	 */
 	public int recommendMovie(int userID) {
+		for(Map.Entry<Integer, Movie> e : movies.entrySet()) {
+			double ratingGuessed = guessRating(userID, e.getValue().getID());
+			if(ratingGuessed>4.5) {
+				return e.getValue().getID();
+			}
+		}
+		return 1;
+	}
 
-		return 0;
+	public ArrayList<Movie> getMovies() {
+		ArrayList<Movie> a = new ArrayList<Movie>();
+		for(Map.Entry<Integer, Movie> e : movies.entrySet()) {
+			a.add(e.getValue());
+		}
+		return a;
+	}
+	
+	public Movie getMovie(int movieID) {
+		return movies.get(movieID);
 	}
 	
 }

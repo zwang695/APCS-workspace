@@ -9,7 +9,6 @@ public class User {
 	private HashMap<Movie, Rating> ratings;
 	private Genre[] avgR; //Genres the user rates
 	
-	
 	public User(int id) {
 		this.id = id;
 		ratings = new HashMap<Movie, Rating>();
