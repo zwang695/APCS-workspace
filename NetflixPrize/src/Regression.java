@@ -1,8 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-public class NetflixTester {
+public class Regression {
 	
 	public static final String baseFile = "testingDatasets" + FileIO.fileSep + "1Ratings.csv";
 	public static final String testFile = "testingDatasets" + FileIO.fileSep + "1Tests.csv";
@@ -122,6 +121,11 @@ public class NetflixTester {
 			totalDifference += Math.abs(guessStars-actualStars);
 			totalSquareDifference += (guessStars-actualStars) * (guessStars-actualStars);
 			numberTested++;
+			if(Math.abs(guessStars-actualStars) > 3.5) {
+				System.out.println(Math.abs(guessStars-actualStars));
+				System.out.println("guess:" + guessStars);
+				System.out.println("actual:" + actualStars);
+			}
 			//System.out.println("Tested " + (numberTested+numberPresent) + "/" + testDataLines.size());
 		}
 		
@@ -134,13 +138,12 @@ public class NetflixTester {
 		
 		System.out.println("\n\n******Results******");
 		System.out.println("Runtime: " + mins + ":" + secs + ":" + millis);
-		System.out.println("Test combinations already present in dataset: " + numberPresent);
-		System.out.println("Test combinations not present (rating guessed): " + numberTested);
-		System.out.println("Total difference between guessed and actual ratings: " + totalDifference);
-		System.out.println("Average difference between guessed and actual ratings: " + totalDifference/numberTested);
-		System.out.println("Root square mean difference between guessed and actual ratings: " + Math.sqrt(totalSquareDifference/numberTested));
+//		System.out.println("Test combinations already present in dataset: " + numberPresent);
+//		System.out.println("Test combinations not present (rating guessed): " + numberTested);
+//		System.out.println("Total difference between guessed and actual ratings: " + totalDifference);
+//		System.out.println("Average difference between guessed and actual ratings: " + totalDifference/numberTested);
+//		System.out.println("Root square mean difference between guessed and actual ratings: " + Math.sqrt(totalSquareDifference/numberTested));
 		//System.out.println("Root square mean difference between guessed and actual ratings: " + 0.00001);
 		
 	}
-
 }

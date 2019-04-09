@@ -63,12 +63,11 @@ public class DrawingMovie {
 					if(s != null) s.close();
 				}
 				
-				int i = output.indexOf("<a href=\"/title/tt" + movie.getID());
+				int i = output.indexOf("<a href=\"/title/tt" + movie.getImdb());
 				//int i = output.indexOf("Toy Story Poster");
 				int index = output.indexOf("src=", i+1);
 				int index2 = output.indexOf("\"", index+1);
 				output = output.substring(index2 + 1, output.indexOf("\"", index2 + 1));
-				
 				coverArt = drawer.loadImage(output, "jpg");
 			}
 			

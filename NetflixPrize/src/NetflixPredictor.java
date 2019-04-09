@@ -113,10 +113,9 @@ public class NetflixPredictor {
 		}
 		
 		if(!Double.isNaN(m.getAvgR())) {
-//			sum += m.getAvgR();
-//			count++;
-			double r = m.getAvgR();
-			
+			sum += m.getAvgR();
+			count++;
+			//double r = m.getAvgR();
 		}
 		
 		double ans = sum/count;
@@ -133,13 +132,20 @@ public class NetflixPredictor {
 	 * @pre A user with id userID exists in the database.
 	 */
 	public int recommendMovie(int userID) {
+		int movieID = 0;
+		double thatRating = 0;
 		for(Map.Entry<Integer, Movie> e : movies.entrySet()) {
 			double ratingGuessed = guessRating(userID, e.getValue().getID());
-			if(ratingGuessed>4.5) {
-				return e.getValue().getID();
+			if(e.getValue().getRating(users.get(userID)) != null) {
+				continue;
 			}
+			if(ratingGuessed > thatRating) {
+				movieID = e.getValue().getID();
+				thatRating = ratingGuessed;
+			}
+			
 		}
-		return 1;
+		return movieID;
 	}
 
 	public ArrayList<Movie> getMovies() {

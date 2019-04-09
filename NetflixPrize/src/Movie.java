@@ -91,4 +91,8 @@ public class Movie {
 	public String getTitle() {
 		return title;
 	}
+	
+	public Rating getRating(User u) {
+		return ratings.get(u);
+	}
 }
