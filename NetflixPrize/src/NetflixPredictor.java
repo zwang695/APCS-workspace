@@ -113,8 +113,10 @@ public class NetflixPredictor {
 		}
 		
 		if(!Double.isNaN(m.getAvgR())) {
-			sum += m.getAvgR();
-			count++;
+//			sum += m.getAvgR();
+//			count++;
+			double r = m.getAvgR();
+			
 		}
 		
 		double ans = sum/count;

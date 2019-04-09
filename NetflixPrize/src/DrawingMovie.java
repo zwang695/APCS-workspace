@@ -63,7 +63,7 @@ public class DrawingMovie {
 					if(s != null) s.close();
 				}
 				
-				int i = output.indexOf(movie.getTitle() + "Poster");
+				int i = output.indexOf("<a href=\"/title/tt" + movie.getID());
 				//int i = output.indexOf("Toy Story Poster");
 				int index = output.indexOf("src=", i+1);
 				int index2 = output.indexOf("\"", index+1);
