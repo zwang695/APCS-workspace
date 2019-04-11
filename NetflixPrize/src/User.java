@@ -54,7 +54,14 @@ public class User {
 			double n1 = sum[i];
 			int n2 = count[i];
 			avgR[i].setAvgR(n1/n2);
+			//if(Double.isNaN(avgR[i].getAvgR())) System.out.println("rip");
 		}
 	}
 	
+	
+	public void printGenres() {
+		for(Genre f : avgR) {
+			System.out.println(f.getName() + ": " + f.getAvgR());
+		}
+	}
 }

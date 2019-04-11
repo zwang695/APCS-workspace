@@ -122,9 +122,10 @@ public class Regression {
 			totalSquareDifference += (guessStars-actualStars) * (guessStars-actualStars);
 			numberTested++;
 			if(Math.abs(guessStars-actualStars) > 3.5) {
-				System.out.println(Math.abs(guessStars-actualStars));
 				System.out.println("guess:" + guessStars);
 				System.out.println("actual:" + actualStars);
+				System.out.println(NetflixPredictor.movies.get(movieToTest));
+				NetflixPredictor.users.get(userToTest).printGenres();
 			}
 			//System.out.println("Tested " + (numberTested+numberPresent) + "/" + testDataLines.size());
 		}

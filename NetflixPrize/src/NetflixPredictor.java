@@ -8,8 +8,8 @@ public class NetflixPredictor {
 
 
 	// Add fields to represent your database.
-	HashMap<Integer, Movie> movies; //movieID, the movie                             
-	HashMap<Integer, User> users; //userID, the user
+	public static HashMap<Integer, Movie> movies; //movieID, the movie                             
+	public static HashMap<Integer, User> users; //userID, the user
 	
 	
 	/**
@@ -139,11 +139,11 @@ public class NetflixPredictor {
 			if(e.getValue().getRating(users.get(userID)) != null) {
 				continue;
 			}
-			if(ratingGuessed > thatRating) {
+			double x = Math.random();
+			if(ratingGuessed > thatRating && x > 0.9) {
 				movieID = e.getValue().getID();
 				thatRating = ratingGuessed;
 			}
-			
 		}
 		return movieID;
 	}

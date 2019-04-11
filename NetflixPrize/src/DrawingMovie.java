@@ -29,7 +29,7 @@ public class DrawingMovie {
 			}
 			
 			String title = movie.getTitle();
-			drawer.text(title, x, y);
+			drawer.text(title, x, y + height + 35, x + width/2, y + height + 50);
 			
 		}
 		drawer.stroke(0);

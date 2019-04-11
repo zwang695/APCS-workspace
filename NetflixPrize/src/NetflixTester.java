@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class NetflixTester {
 	
-	public static final String baseFile = "testingDatasets" + FileIO.fileSep + "1Ratings.csv";
-	public static final String testFile = "testingDatasets" + FileIO.fileSep + "1Tests.csv";
+	public static final String baseFile = "testingDatasets" + FileIO.fileSep + "5Ratings.csv";
+	public static final String testFile = "testingDatasets" + FileIO.fileSep + "5Tests.csv";
 
 	
 	public static final String moviesFile = "ml-latest-small" + FileIO.fileSep + "movies.csv";
