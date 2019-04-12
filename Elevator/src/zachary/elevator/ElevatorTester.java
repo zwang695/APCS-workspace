@@ -6,11 +6,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class ElevatorTester extends JPanel implements ActionListener {
+public class ElevatorTester extends JPanel implements ActionListener, WindowListener{
 
   private JButton[] buttons;
   private JButton act;
   private Elevator theElevator;
+  
+  private JButton save, load;
   
   public ElevatorTester() {
   	super(new BorderLayout());
@@ -21,10 +23,20 @@ public class ElevatorTester extends JPanel implements ActionListener {
   	buttons[2] = new JButton("3");
   	act = new JButton("ACT");
   	
+  	save = new JButton("SAVE");
+  	load = new JButton("LOAD");
+  	
   	for(JButton b : buttons)
   		b.setBackground(Color.LIGHT_GRAY);
   	
-  	theElevator = new Elevator(act,buttons);
+  	Elevator e = Elevator.loadState("storage.ess");
+  	if(e != null) {
+  		theElevator = e;
+  		theElevator.initializeGUI(act, buttons);
+  	}
+  	else {
+	  	theElevator = new Elevator(act,buttons);
+  	}
   	add(theElevator, BorderLayout.CENTER);
   	
   	JPanel right = new JPanel(new GridLayout(1,2));
@@ -44,6 +56,11 @@ public class ElevatorTester extends JPanel implements ActionListener {
   	bottom.add(act);
   	right.add(act);
   	
+  	save.addActionListener(this);
+  	right.add(save);
+  	load.addActionListener(this);
+  	right.add(load);
+  	
   	add(right, BorderLayout.NORTH);
   }
   
@@ -58,7 +75,19 @@ public class ElevatorTester extends JPanel implements ActionListener {
   	if (e.getSource() == act) {
   		theElevator.act();
   	}
-  		
+  	if(e.getSource() == save) {
+  		Elevator.saveState(theElevator, "storage.ess"); // elevator save state?
+  	}
+  	if(e.getSource() == load) {
+  		Elevator newEle = Elevator.loadState("storage.ess");
+  		if(newEle == null) return;
+  		newEle.initializeGUI(act, buttons);
+  		remove(theElevator);
+  		theElevator = newEle;
+  		add(theElevator);
+  		revalidate();
+  		repaint();
+  	}
   }
   
 	
@@ -73,5 +102,53 @@ public class ElevatorTester extends JPanel implements ActionListener {
     w.setVisible(true);
     
   }
+
+
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		System.out.println(1);
+		
+	}
+	
+	
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+		System.out.println(2);
+	}
+	
+	
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		System.out.println(3);
+		
+	}
+	
+	
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		System.out.println(4);
+		
+	}
+	
+	
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		System.out.println(5);
+		
+	}
+	
+	
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		System.out.println(6);
+		
+	}
+	
+	
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		System.out.println(7);
+		
+	}
 	
 }
